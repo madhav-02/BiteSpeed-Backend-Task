@@ -1,6 +1,6 @@
 import express from "express";
 import * as dotenv from "dotenv";
-import connectDB from "./mongodb/connect.js";
+import connection from "./mysql/connectDB.js";
 
 dotenv.config();
 
@@ -13,10 +13,16 @@ app.use(express.json());
 
 
 try{
-    connectDB(process.env.MONGO_DB_URL);
+    connection.connect((error) => {
+        if (error) {
+          console.error('Failed to connect to the database: ', error);
+          return;
+        }
+        console.log('Connected to the database!');
+      });
     app.listen(PORT, ()=>{
         console.log(`Application has started at port ${PORT}`);
     })
 }catch(err){
-    console.log("THere was an error while connecting to mongoDB: ",console.err);
+    console.log("THere was an error while starting the application: ",console.err);
 }
