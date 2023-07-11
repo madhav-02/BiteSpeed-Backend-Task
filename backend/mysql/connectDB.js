@@ -1,7 +1,7 @@
 import mysql from 'mysql2';
 import * as dotenv from "dotenv";
 dotenv.config();
-console.log("DATABASE is : ",process.env.MYSQL_DATABASE);
+//console.log("DATABASE is : ",process.env.MYSQL_DATABASE);
 const connection = mysql.createConnection({
     
     host: process.env.MYSQL_HOST, // Replace with your database host
